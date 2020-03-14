@@ -11,7 +11,7 @@ step = 0
 #         print(f"You've guessed it - congratulations! It's number {secret}.")
 #         break
 #     else:
-#         print("Sorry, your guess is not correct... The secret number is not ")
+#         print("Sorry, your guess is not correct... The secret number is not {guess}")
 
 
 while guess != secret or step < 10:
