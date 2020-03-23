@@ -7,6 +7,8 @@ guess = 0
 step = 0
 steps = [0, 1, 2, 3, 4]
 
+steps[0]
+
 for step in range(tries):
     print(f'Step: {step + 1}')
     guess = int(input("Guess the secret number (between 1 and 30): "))
