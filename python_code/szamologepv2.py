@@ -9,5 +9,5 @@ print('-' * 20)
 
 result = calculate(num_1, num_2, operand)
 
-print(f'Result: {result}')    
+print(f'Result: {result}')
 print('-' * 20)
