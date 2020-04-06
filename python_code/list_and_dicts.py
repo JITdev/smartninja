@@ -31,24 +31,30 @@ list1.reverse()
 box = [20, 45, 30]
 
 # dictionary (szotar) letrehozasa
-box = {"height": 20, "width": 45, "length": 30}
+box = {"height": 20, "width": 45, "length": 30, "other": {"color": "black"}}
 # vagy (az elso a gyorsabb):
 box = dict(height=20, width=45, length=30)
 
 # ertek megadasa
 box['material'] = 'iron'
 box['height'] = 21
+print(box['other']['color'])
 # uj dict letrehozasa
+
 box2 = dict(box)
+# box.copy()
 
 # Peldak ertekek eleresere
 print(f"Height: {box['height']} cm")
 height = box.get('height1', 'Nincs ilyen kulcs')
+del box['other']
+box.pop('other', None)
 # Kulcsok / ertekek egy listaba:
 print(box.keys())
 print(box.values())
 
-for key, value in box.items(): # ('kulcs', 'ertek')
+for key, value in box.items():  # [('kulcs', 'ertek'), ('kulcs', 'ertek'), ...]
     print(f'key: {key}, value: {value}')
 
 # print(box.items())
+

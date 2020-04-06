@@ -5,6 +5,7 @@ def say_hello(first_name='World', last_name=''):
 
 # say_hello('Roland', 'Kainrath')
 
+
 def calculate(num_1, num_2, operand='+'):
     result = ''
 
@@ -21,11 +22,11 @@ def calculate(num_1, num_2, operand='+'):
             result = 'Zero division not supported.'
     else:
         result = 'I don\'t recognize this operator.'
-    
+
     return result
 
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
     say_hello()
     print_this = calculate(num_1=3, num_2=0, operand='+')
-    print(f'Soution: {print_this}')   
+    print(f'Soution: {print_this}')

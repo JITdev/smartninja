@@ -1,5 +1,5 @@
 
-from functions_11 import calculate
+from functions import calculate
 
 num_1 = int(input('Please enter a number: '))
 num_2 = int(input('Please enter a number: '))
