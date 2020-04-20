@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Title for index!{% endblock title %}
+
+{% block content %}
+<h1>Login</h1>
+<div class="container">
+    <div class="row jumbotron">
+        <form method="post" action="/login">
+            <div class="row">
+                <label class="form-label" for="user-name">User name:
+                    <input class="form-input" type="text" name="user-name" placeholder="Enter name">
+                </label>
+            </div>
+            <div class="row">
+                <label class="form-label" for="user-email">E-mail:
+                    <input class="form-input" type="text" name="user-email" placeholder="Enter email">
+                </label>
+            </div>
+            <div class="row">
+                <button class="btn btn-info" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
