@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Title for index!{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1>Guess the number:</h1>
+    </div>
+    <div class="row jumbotron">
+            <form method="post" action="/">
+                <label class="form-label" for="guess">Number:
+                    <input class="form-input" type="text" name="guess" placeholder="Enter your guess">
+                </label>
+
+                <button class="btn btn-info" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
