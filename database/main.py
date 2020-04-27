@@ -1,6 +1,6 @@
 import datetime
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, make_response
 from .models import User, db
 
 app = Flask(__name__, static_folder='./static', template_folder='./templates')
@@ -9,7 +9,16 @@ db.create_all()  # create (new) tables in the database
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    email_address = request.cookies.get("email")
+
+    if email_address:
+        user = db.query(User).filter_by(email=email_address).first()
+    else:
+        user = None
+
+    return render_template("index.html", user=user)
+
+    # return render_template("index.html")
 
 
 @app.route("/login", methods=["POST"])
@@ -24,7 +33,11 @@ def login():
     db.add(user)
     db.commit()
 
-    return redirect(url_for('index'))
+    # save user's email into a cookie
+    response = make_response(redirect(url_for('index')))
+    response.set_cookie("email", email)
+
+    return response
 
 
 @app.route("/about-me", methods=['GET', 'POST'])
@@ -58,6 +71,7 @@ def contact():
     print(contact_message)
 
     return render_template("success.html")
+
 
 if __name__ == '__main__':
     app.run()
