@@ -4,22 +4,15 @@
 
 {% block content %}
 
-{% if user %}
+<h1>Register </h1>
 <div class="container">
     <div class="row jumbotron">
-<h1>Hello {{user.name}}</h1>
-    </div>
-    <div class="row">
-<h2>This is your email address: {{user.email}}</h2>
-    </div>
-
-{% else %}
-
-
-<h1>Login</h1>
-<div class="container">
-    <div class="row jumbotron">
-        <form method="post" action="/login">
+        <form method="post" action="/register">
+            <div class="row">
+                <label class="form-label" for="user-name">User name:
+                    <input class="form-input" type="text" name="user-name" placeholder="Enter name">
+                </label>
+            </div>
             <div class="row">
                 <label class="form-label" for="user-email">E-mail:
                     <input class="form-input" type="text" name="user-email" placeholder="Enter email">
@@ -36,7 +29,5 @@
         </form>
     </div>
 </div>
-
-{% endif %}
 
 {% endblock content %}
