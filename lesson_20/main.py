@@ -9,12 +9,17 @@ app = Flask(__name__)
 db.create_all()  # create (new) tables in the database
 
 
+def get_user(session_token):
+    return db.query(User). \
+        filter_by(session_token=session_token, deleted=False).first()
+
+
 @app.route("/", methods=["GET"])
 def index():
     session_token = request.cookies.get("session_token")
 
     if session_token:
-        user = db.query(User).filter_by(session_token=session_token).first()
+        user = get_user(session_token)
     else:
         user = None
 
@@ -34,7 +39,7 @@ def login():
     secret_number = random.randint(1, 30)
 
     # see if user already exists
-    user = db.query(User).filter_by(email=email).first()
+    user = db.query(User).filter_by(email=email, deleted=False).first()
 
     if not user:
         # create a User object
@@ -70,7 +75,7 @@ def result():
     session_token = request.cookies.get("session_token")
 
     # get user from the database based on her/his email address
-    user = db.query(User).filter_by(session_token=session_token).first()
+    user = get_user(session_token)
 
     if guess == user.secret_number:
         message = "Correct! The secret number is {0}".format(str(guess))
@@ -97,7 +102,7 @@ def profile():
     session_token = request.cookies.get("session_token")
 
     # get user from the database based on her/his email address
-    user = db.query(User).filter_by(session_token=session_token).first()
+    user = get_user(session_token)
 
     if user:
         return render_template("profile.html", user=user)
@@ -109,7 +114,7 @@ def profile_edit():
     session_token = request.cookies.get("session_token")
 
     # get user from the database based on her/his email address
-    user = db.query(User).filter_by(session_token=session_token).first()
+    user = get_user(session_token)
 
     if request.method == "GET":
         if user:  # if user is found
@@ -135,7 +140,7 @@ def profile_delete():
     session_token = request.cookies.get("session_token")
 
     # get user from the database based on her/his email address
-    user = db.query(User).filter_by(session_token=session_token).first()
+    user = get_user(session_token)
 
     if request.method == "GET":
         if user:  # if user is found
@@ -144,7 +149,9 @@ def profile_delete():
             return redirect(url_for("index"))
     elif request.method == "POST":
         # delete the user in the database
-        db.delete(user)
+        # db.delete(user)
+        user.deleted = True
+        db.add(user)
         db.commit()
 
     return redirect(url_for("index"))
@@ -152,7 +159,7 @@ def profile_delete():
 
 @app.route("/users", methods=["GET"])
 def all_users():
-    users = db.query(User).all()
+    users = db.query(User).filter_by(deleted=False).all()
 
     return render_template("users.html", users=users)
 

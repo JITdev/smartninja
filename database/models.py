@@ -11,6 +11,7 @@ class User(db.Model):
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     salt = db.Column(db.String)
+    deleted = db.Column(db.Boolean, default=False)
 
 
 class Session(db.Model):
