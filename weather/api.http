@@ -1,0 +1,6 @@
+GET https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&appid=7c5fe4b501cba91a84cca4170f89ec0f
+
+###
+
+GET https://api.openweathermap.org/data/2.5/weather?q=budapest&units=metric&appid=7c5fe4b501cba91a84cca4170f89ec0f
+Content-Type: application/json

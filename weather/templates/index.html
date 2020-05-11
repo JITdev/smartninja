@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Title for index!{% endblock title %}
+
+{% block content %}
+<h1>Hello, weather!</h1>
+<div class="container">
+    <div class="row">
+      <div class="col">
+          <ul>
+              <li>
+                  <a href="/?city=London">London</a>
+              </li>
+              <li>
+                <a href="/?city=Budapest">Budapest</a>
+              </li>
+              <li>
+                <a href="/?city=Berlin">Berlin</a>
+              </li>
+          </ul>
+        <hr>
+        <p>Location: {{ data.name }}</p>
+        <p>Weather description: {{ data.weather[0].description }}</p>
+        <p>Current temperature: {{ data.main.temp }}</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
