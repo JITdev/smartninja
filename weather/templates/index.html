@@ -1,24 +1,34 @@
 {% extends "base.html" %}
 
-{% block title %}Title for index!{% endblock title %}
+{% block title %}{{ data.weather[0].description|title }}{% endblock title %}
 
 {% block content %}
 <h1>Hello, weather!</h1>
 <div class="container">
     <div class="row">
       <div class="col">
-          <ul>
-              <li>
-                  <a href="/?city=London">London</a>
+          <ul class="list-group flex-row">
+              <li class="list-group-item">
+                  <a class="btn btn-link" href="/?city=London">London</a>
               </li>
-              <li>
-                <a href="/?city=Budapest">Budapest</a>
+              <li class="list-group-item">
+                <a class="btn btn-link" href="/?city=Budapest">Budapest</a>
               </li>
-              <li>
-                <a href="/?city=Berlin">Berlin</a>
+              <li class="list-group-item">
+                <a class="btn btn-link" href="/?city=Berlin">Berlin</a>
+              </li>
+              <li class="list-group-item">
+                <a class="btn btn-link" href="/?city=Delhi">Delhi</a>
               </li>
           </ul>
         <hr>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-3 text-center">
+             <img class="img-fluid" id="wicon" src="http://openweathermap.org/img/wn/{{ data.weather[0].icon }}@2x.png" alt="Weather icon">
+        </div>
+        <div class="col-9">
         <p>Location: {{ data.name }}</p>
         <p>Weather description: {{ data.weather[0].description }}</p>
         <p>Current temperature: {{ data.main.temp }}</p>
